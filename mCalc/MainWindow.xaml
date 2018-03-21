@@ -1,0 +1,60 @@
+﻿<Window x:Class="mCalc.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:mCalc"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="500">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Name="RowDefinitionMenu" MinHeight="20"/>
+      <RowDefinition Name="RowDefinitionToolbar" Height="44"/>
+      <RowDefinition Name="RowDefinitionMain" Height="100*"/>
+      <RowDefinition Name="RowDefinitionBottom" Height="25"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Name="Left" Width="100" MinWidth="25"/>
+      <ColumnDefinition Width="4"/>
+      <ColumnDefinition Name="Middle" Width="100*"/>
+      <ColumnDefinition Width="4"/>
+      <ColumnDefinition Name="Right" Width="100" MinWidth="25"/>
+      
+    </Grid.ColumnDefinitions>
+    <!-- Menu -->
+    <Menu Grid.Row="0" Grid.ColumnSpan="5" VerticalContentAlignment="Bottom">
+      <MenuItem Header="Hello">
+        <MenuItem Header="Hi"></MenuItem>
+      </MenuItem>
+    </Menu>
+    <!-- Toolbar -->
+    <ToolBarTray Grid.Row="1" Grid.ColumnSpan="5">
+      <ToolBar Height="44">
+        <Button Command="Delete" Content="Delete" />
+        <Button Command="Refresh" Content="Refresh" />
+      </ToolBar>
+    </ToolBarTray>
+    
+    <!-- Main row Left-->
+    <TextBlock Grid.Row="2" Grid.Column="0">Textblock</TextBlock>
+
+    <GridSplitter Grid.Column="1" Grid.Row="2" Width="2" HorizontalAlignment="Stretch" />
+    
+    <!-- Main row Middle -->
+    <TabControl Grid.Row="2" Grid.Column="2">
+      <TabItem Header="Overview">
+        <TextBlock>Center</TextBlock>
+      </TabItem>
+    </TabControl>
+
+    <GridSplitter Grid.Column="3" Grid.Row="2" Width="2" HorizontalAlignment="Stretch" />
+
+    <!-- Main row Right -->
+    <TextBlock Grid.Row="2" Grid.Column="4">Right</TextBlock>
+
+    <!-- Bottom -->
+    <StatusBar Grid.Row="3" Grid.ColumnSpan="5">statusbar</StatusBar>
+
+
+  </Grid>
+</Window>
