@@ -38,6 +38,7 @@
       <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,6 +61,7 @@
     <Compile Include="cls\mVector.cs" />
     <Compile Include="cls\OrderedList.cs" />
     <Compile Include="cls\OrderedListTest.cs" />
+    <Compile Include="Models\MainModel.cs" />
     <Compile Include="ViewModels\MainWindow.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -102,8 +104,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="coins\XBT\" />
     <Folder Include="graph\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mCoin.Interfaces\mCoin.Api.csproj">
+      <Project>{f3e72c16-7a13-4e72-9907-02829f336d7e}</Project>
+      <Name>mCoin.Api</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>IF NOT EXIST "$(SolutionDir)mCalc\bin\$(ConfigurationName)\Coins" mkdir "$(SolutionDir)mCalc\bin\$(ConfigurationName)\Coins"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
