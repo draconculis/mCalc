@@ -205,11 +205,11 @@ namespace mCalc.cls
                 foreach (var line in lines)
                 {
                     var lineparts = line.Split(';');
-                    m_Points.Add(new mPoint(long.Parse(lineparts[0]), decimal.Parse(lineparts[1]))));
+                    m_Points.Add(new mPoint(long.Parse(lineparts[0]), decimal.Parse(lineparts[1])));
                 }
 
             }
-            catch (Exception e)
+            catch
             {
                 return false;
             }
@@ -230,7 +230,7 @@ namespace mCalc.cls
                 }
 
             }
-            catch (Exception e)
+            catch
             {
                 return false;
             }
@@ -238,7 +238,7 @@ namespace mCalc.cls
             return true;
         }
 
-        #region File stuff --------------------------------------------
+        #endregion File stuff --------------------------------------------
 
 
         public IEnumerator<mPoint> GetEnumerator()

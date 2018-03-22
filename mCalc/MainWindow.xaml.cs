@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using mCalc.Models;
+using mCalc.ViewModels;
 
 namespace mCalc
 {
@@ -21,12 +22,16 @@ namespace mCalc
     /// </summary>
     public partial class MainWindow : Window
     {
-        //public MainModel Model { get; set; }
+        public MainModel Model { get; set; }
 
         public MainWindow()
         {
-            //Model = new MainModel();
+            Model = new MainModel();
+            
+            DataContext = new MainViewModel();
+
             InitializeComponent();
+
         }
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)

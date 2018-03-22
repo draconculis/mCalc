@@ -3,13 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:mCalc.Models"
+        xmlns:local="clr-namespace:mCalc"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="500"
         Loaded="MainWindow_OnLoaded">
-  <Window.DataContext>
-    <local:MainModel/>
-  </Window.DataContext>
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Name="RowDefinitionMenu" MinHeight="20"/>
@@ -18,11 +15,11 @@
       <RowDefinition Name="RowDefinitionBottom" Height="25"/>
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Name="Left" Width="100" MinWidth="25"/>
+      <ColumnDefinition Name="LeftCol" Width="100" MinWidth="25"/>
       <ColumnDefinition Width="4"/>
-      <ColumnDefinition Name="Middle" Width="100*"/>
+      <ColumnDefinition Name="MiddleCol" Width="100*"/>
       <ColumnDefinition Width="4"/>
-      <ColumnDefinition Name="Right" Width="100" MinWidth="25"/>
+      <ColumnDefinition Name="RightCol" Width="100" MinWidth="25"/>
       
     </Grid.ColumnDefinitions>
     <!-- Menu -->

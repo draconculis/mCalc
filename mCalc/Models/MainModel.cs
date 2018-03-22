@@ -14,11 +14,10 @@ namespace mCalc.Models
         [ImportMany(typeof(ICoin))]
         public List<ICoin> Coins { get; set; }
 
-        private string SomeText { get; set; }
 
         public MainModel()
         {
-            SomeText = "Hi World";
+
             Compose();
         }
 

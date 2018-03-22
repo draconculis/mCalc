@@ -52,6 +52,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /C /Y "$(TargetPath)" "$(SolutionDir)mCalc\bin\$(ConfigurationName)\Coins"</PostBuildEvent>
+    <PostBuildEvent>xcopy /C /Y  "$(TargetPath)" "$(SolutionDir)mCalc\bin\$(ConfigurationName)\Coins"</PostBuildEvent>
   </PropertyGroup>
 </Project>

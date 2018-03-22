@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace mCalc.ViewModels
 {
-    class MainWindow
+    public class MainViewModel
     {
+
+        public string SomeText { get; set; } = "Hellooo";
     }
 }
