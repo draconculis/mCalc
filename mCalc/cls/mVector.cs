@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -12,6 +13,8 @@ namespace mCalc.cls
     public class mVector : IEnumerable<mPoint>
     {
         private OrderedList<mPoint> m_Points;
+        public int Count => m_Points.Count;
+        public int LastIdx => m_Points.Count - 1;
 
         public mVector()
         {
@@ -23,17 +26,28 @@ namespace mCalc.cls
             m_Points = points.m_Points;
         }
 
+        /// <summary>
+        /// Indexer
+        /// </summary>
         public mPoint this[int idx]
         {
             get => m_Points[idx];
             set => m_Points[idx] = value;
         }
 
+        /// <summary>
+        /// Adds item in order, according to ticks
+        /// </summary>
+        /// <param name="point"></param>
         public void Add(mPoint point)
         {
             m_Points.Add(point);
         }
 
+        /// <summary>
+        /// Merges two vectors in order
+        /// </summary>
+        /// <param name="points"></param>
         public void AddRange(mVector points)
         {
             m_Points.AddRange(points);
@@ -72,6 +86,161 @@ namespace mCalc.cls
             return max;
         }
 
+        public decimal MeanValue(DateTime from, DateTime to)
+        {
+            if (Count == 0)
+                return 0m;
+
+            decimal sum = 0m;
+            foreach (var point in m_Points)
+            {
+                sum += point.Amount;
+            }
+            return sum / Count;
+        }
+
+        public Tuple<decimal, decimal> Range(long fromTicks = long.MinValue, long toTicks = long.MaxValue)
+        {
+            if (fromTicks < m_Points[0].Ticks)
+                fromTicks = m_Points[0].Ticks;
+
+            if (toTicks > m_Points[LastIdx].Ticks)
+                fromTicks = m_Points[LastIdx].Ticks;
+
+            decimal min = decimal.MinValue;
+            decimal max = decimal.MinValue;
+            foreach (var point in m_Points)
+            {
+                if (point.Amount > max)
+                    max = point.Amount;
+                if (point.Amount < min)
+                    min = point.Amount;
+            }
+            return new Tuple<decimal, decimal>(min, max);
+        }
+
+        /// <summary>
+        /// Returns a tuple of from idx and to idx with a close match to the provided ticks range.
+        /// Will return closest greater minTicks and closest smaller maxtick
+        /// </summary>
+        /// <param name="fromTicks"></param>
+        /// <param name="toTicks"></param>
+        /// <returns></returns>
+        public Tuple<int, int> IdxRange(long fromTicks = long.MinValue, long toTicks = long.MaxValue)
+        {
+            int fromIdx = NextOrEqualTicksIdx(fromTicks);
+            int toIdx = PrevOrEqualTicksIdx(toTicks);
+
+            return new Tuple<int, int>(fromIdx, toIdx);
+        }
+
+        public int NextTicksIdx(long ticks)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                if (m_Points[i].Ticks > ticks)
+                    return i;
+            }
+
+            return LastIdx;
+        }
+
+        public int PrevTicksIdx(long ticks)
+        {
+            for (int i = LastIdx; i >= 0; i--)
+            {
+                if (m_Points[i].Ticks < ticks)
+                    return i;
+            }
+
+            return 0;
+        }
+
+        public int NextOrEqualTicksIdx(long ticks)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                if (m_Points[i].Ticks >= ticks)
+                    return i;
+            }
+
+            return LastIdx;
+        }
+
+        public int PrevOrEqualTicksIdx(long ticks)
+        {
+            for (int i = LastIdx; i >= 0; i--)
+            {
+                if (m_Points[i].Ticks <= ticks)
+                    return i;
+            }
+
+            return 0;
+        }
+
+
+        /// <summary>
+        /// Get min and max for ticks
+        /// </summary>
+        public Tuple<long, long> TicksRange()
+        {
+            return new Tuple<long, long>(m_Points[0].Ticks, m_Points[LastIdx].Ticks);
+        }
+
+        public Tuple<DateTime, DateTime> DateRange()
+        {
+            var tickRange = TicksRange();
+            return new Tuple<DateTime, DateTime>(new DateTime(tickRange.Item1), new DateTime(tickRange.Item2));
+        }
+
+
+        #region File stuff --------------------------------------------
+
+        public bool Load(string filename)
+        {
+            try
+            {
+                string[] lines = File.ReadAllLines(filename);
+
+                foreach (var line in lines)
+                {
+                    var lineparts = line.Split(';');
+                    m_Points.Add(new mPoint(long.Parse(lineparts[0]), decimal.Parse(lineparts[1]))));
+                }
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool Save(string filename)
+        {
+            try
+            {
+                using (StreamWriter streamw = new StreamWriter(filename))
+                {
+                    foreach (var point in m_Points)
+                    {
+                        streamw.WriteLine($"{point.Ticks};{point.Amount};");
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #region File stuff --------------------------------------------
+
+
         public IEnumerator<mPoint> GetEnumerator()
         {
             return m_Points.GetEnumerator();
@@ -81,56 +250,8 @@ namespace mCalc.cls
         {
             return GetEnumerator();
         }
+
+
     }
 
-    public class mPoint : IComparable
-    {
-        public long Ticks { get; set; }
-        public Decimal Amount { get; set; }
-
-        public DateTime Date
-        {
-            get => new DateTime(Ticks);
-            set => Ticks = value.Ticks;
-        }
-
-        #region Contructors -------------------------------------------
-        public mPoint(decimal amount)
-            : this(DateTime.Now.Ticks, amount)
-        {
-        }
-
-        public mPoint(long ticks, decimal amount)
-        {
-            Ticks = ticks;
-            Amount = amount;
-        }
-
-        public mPoint(DateTime date, decimal amount)
-        {
-            Date = date;
-            Amount = amount;
-        }
-        #endregion Contructors ----------------------------------------
-
-        #region ICompare stuff ----------------------------------------
-        public int CompareTo(object obj)
-        {
-            return this.Ticks.CompareTo(((mPoint) obj).Ticks);
-        }
-
-        public class AmountComparer : IComparer, IComparer<mPoint>
-        {
-            public int Compare(object x, object y)
-            {
-                return ((mPoint)x).Amount.CompareTo(((mPoint)y).Amount);
-            }
-
-            public int Compare(mPoint x, mPoint y)
-            {
-                return x.Amount.CompareTo(y.Amount);
-            }
-        }
-        #endregion ICompare stuff -------------------------------------
-    }
 }

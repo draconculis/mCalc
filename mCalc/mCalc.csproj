@@ -58,10 +58,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="cls\mPoint.cs" />
     <Compile Include="cls\mVector.cs" />
     <Compile Include="cls\OrderedList.cs" />
     <Compile Include="cls\OrderedListTest.cs" />
     <Compile Include="Models\MainModel.cs" />
+    <Compile Include="ext\IEnumeratorExtensions.cs" />
     <Compile Include="ViewModels\MainWindow.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
