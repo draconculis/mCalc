@@ -28,10 +28,9 @@ namespace mCalc
         {
             Model = new MainModel();
             
-            DataContext = new MainViewModel();
+            DataContext = new MainViewModel(Model);
 
             InitializeComponent();
-
         }
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)

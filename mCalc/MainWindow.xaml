@@ -37,7 +37,9 @@
     </ToolBarTray>
     
     <!-- Main row Left-->
-    <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding SomeText}"/>
+    <!--<TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding SomeText}"/>-->
+    <ItemsControl Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Coins}" />
+    
 
     <GridSplitter Grid.Column="1" Grid.Row="2" Width="2" HorizontalAlignment="Stretch" />
     

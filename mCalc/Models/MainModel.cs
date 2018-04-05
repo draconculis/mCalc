@@ -14,10 +14,8 @@ namespace mCalc.Models
         [ImportMany(typeof(ICoin))]
         public List<ICoin> Coins { get; set; }
 
-
         public MainModel()
         {
-
             Compose();
         }
 
