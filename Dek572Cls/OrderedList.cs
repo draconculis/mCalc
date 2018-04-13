@@ -2,11 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Dek572.cls
+namespace Dek572.Cls
 {
     /// <summary>
     /// https://stackoverflow.com/questions/5721889/is-there-a-list-that-is-sorted-automatically-in-net

@@ -58,10 +58,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="cls\mPoint.cs" />
-    <Compile Include="cls\mVector.cs" />
-    <Compile Include="cls\OrderedList.cs" />
-    <Compile Include="cls\OrderedListTest.cs" />
     <Compile Include="Models\MainModel.cs" />
     <Compile Include="ext\IEnumeratorExtensions.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -106,12 +102,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="cls\" />
     <Folder Include="graph\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\mCoin.Interfaces\mCoin.Api.csproj">
+    <ProjectReference Include="..\Dek572Cls\Dek572.Cls.csproj">
+      <Project>{e2987275-da5d-4b88-b448-9a2b691eeba4}</Project>
+      <Name>Dek572.Cls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mCoin.Interfaces\mCalc.Api.csproj">
       <Project>{f3e72c16-7a13-4e72-9907-02829f336d7e}</Project>
-      <Name>mCoin.Api</Name>
+      <Name>mCalc.Api</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

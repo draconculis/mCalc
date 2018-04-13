@@ -3,22 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Dek572.cls;
 
-namespace mCalc.cls
+namespace Dek572.Cls
 {
-    public class mVector : IEnumerable<mPoint>
+    /// <summary>
+    /// Specialized class for a list of mPonts
+    /// </summary>
+    public class mVector : IEnumerable<MPoint>
     {
-        private OrderedList<mPoint> m_Points;
+        private OrderedList<MPoint> m_Points;
         public int Count => m_Points.Count;
         public int LastIdx => m_Points.Count - 1;
+        public MPoint First => m_Points.Any() ? m_Points.First() : MPoint.;
+        public MPoint Last => m_Points.First();
 
         public mVector()
         {
-            m_Points = new OrderedList<mPoint>();
+            m_Points = new OrderedList<MPoint>();
         }
 
         public mVector(mVector points)
@@ -29,7 +30,7 @@ namespace mCalc.cls
         /// <summary>
         /// Indexer
         /// </summary>
-        public mPoint this[int idx]
+        public MPoint this[int idx]
         {
             get => m_Points[idx];
             set => m_Points[idx] = value;
@@ -39,7 +40,7 @@ namespace mCalc.cls
         /// Adds item in order, according to ticks
         /// </summary>
         /// <param name="point"></param>
-        public void Add(mPoint point)
+        public void Add(MPoint point)
         {
             m_Points.Add(point);
         }
@@ -205,7 +206,7 @@ namespace mCalc.cls
                 foreach (var line in lines)
                 {
                     var lineparts = line.Split(';');
-                    m_Points.Add(new mPoint(long.Parse(lineparts[0]), decimal.Parse(lineparts[1])));
+                    m_Points.Add(new MPoint(long.Parse(lineparts[0]), decimal.Parse(lineparts[1])));
                 }
 
             }
@@ -241,7 +242,7 @@ namespace mCalc.cls
         #endregion File stuff --------------------------------------------
 
 
-        public IEnumerator<mPoint> GetEnumerator()
+        public IEnumerator<MPoint> GetEnumerator()
         {
             return m_Points.GetEnumerator();
         }

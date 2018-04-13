@@ -45,9 +45,9 @@
     <Compile Include="XBT.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\mCoin.Interfaces\mCoin.Api.csproj">
+    <ProjectReference Include="..\mCoin.Interfaces\mCalc.Api.csproj">
       <Project>{f3e72c16-7a13-4e72-9907-02829f336d7e}</Project>
-      <Name>mCoin.Api</Name>
+      <Name>mCalc.Api</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

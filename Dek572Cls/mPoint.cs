@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
-namespace mCalc.cls
+namespace Dek572.Cls
 {
-    public class mPoint : IComparable
+    public class MPoint : IComparable, IMPoint
     {
+        //public static IMPoint Null => MPoint
+        private static MNullPoint
+        
+
         public long Ticks { get; set; }
         public Decimal Amount { get; set; }
 
@@ -18,18 +20,18 @@ namespace mCalc.cls
         }
 
         #region Contructors -------------------------------------------
-        public mPoint(decimal amount)
+        public MPoint(decimal amount)
             : this(DateTime.Now.Ticks, amount)
         {
         }
 
-        public mPoint(long ticks, decimal amount)
+        public MPoint(long ticks, decimal amount)
         {
             Ticks = ticks;
             Amount = amount;
         }
 
-        public mPoint(DateTime date, decimal amount)
+        public MPoint(DateTime date, decimal amount)
         {
             Date = date;
             Amount = amount;
@@ -39,17 +41,17 @@ namespace mCalc.cls
         #region ICompare stuff ----------------------------------------
         public int CompareTo(object obj)
         {
-            return this.Ticks.CompareTo(((mPoint)obj).Ticks);
+            return this.Ticks.CompareTo(((MPoint)obj).Ticks);
         }
 
-        public class AmountComparer : IComparer<mPoint>
+        public class AmountComparer : IComparer<MPoint>
         {
             public int Compare(object x, object y)
             {
-                return ((mPoint)x).Amount.CompareTo(((mPoint)y).Amount);
+                return ((MPoint)x).Amount.CompareTo(((MPoint)y).Amount);
             }
 
-            public int Compare(mPoint x, mPoint y)
+            public int Compare(MPoint x, MPoint y)
             {
                 return x.Amount.CompareTo(y.Amount);
             }
