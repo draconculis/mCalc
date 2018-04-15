@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using mCoin.Api.Coins;
 
-namespace Coins2
+namespace mCalc.Coins
 {
     [Export(typeof(ICoin))]
     public class XMR : ICoin
     {
         public string Name => "Monero";
         public string Code => "XMR";
-        public string AltCode => "XMR";
+        public string AltCode => "";
         public string SomeValue { get; set; }
 
         [ImportingConstructor]

@@ -7,8 +7,8 @@ namespace Dek572.Cls
     public class MPoint : IComparable, IMPoint
     {
         //public static IMPoint Null => MPoint
-        private static MNullPoint
-        
+        private static IMPoint m_Null => new MNullPoint();
+        public static IMPoint Null => m_Null;
 
         public long Ticks { get; set; }
         public Decimal Amount { get; set; }
@@ -19,7 +19,7 @@ namespace Dek572.Cls
             set => Ticks = value.Ticks;
         }
 
-        #region Contructors -------------------------------------------
+        #region Constructors -------------------------------------------
         public MPoint(decimal amount)
             : this(DateTime.Now.Ticks, amount)
         {
@@ -36,7 +36,7 @@ namespace Dek572.Cls
             Date = date;
             Amount = amount;
         }
-        #endregion Contructors ----------------------------------------
+        #endregion Constructors ----------------------------------------
 
         #region ICompare stuff ----------------------------------------
         public int CompareTo(object obj)

@@ -44,5 +44,11 @@
     <Compile Include="ICoinDataFetcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dek572Cls\Dek572.Cls.csproj">
+      <Project>{e2987275-da5d-4b88-b448-9a2b691eeba4}</Project>
+      <Name>Dek572.Cls</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

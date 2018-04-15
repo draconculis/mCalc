@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using mCoin.Api.Coins;
 
-namespace Coins1
+namespace mCalc.Coins
 {
     [Export(typeof(ICoin))]
     public class XBT : ICoin

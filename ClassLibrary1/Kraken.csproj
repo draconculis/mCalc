@@ -1,19 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E2987275-DA5D-4B88-B448-9A2B691EEBA4}</ProjectGuid>
+    <ProjectGuid>{EBBCA1D3-5C54-47EF-A22F-5E98F416DF39}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dek572.Cls</RootNamespace>
-    <AssemblyName>Dek572.Cls</AssemblyName>
+    <RootNamespace>ClassLibrary1</RootNamespace>
+    <AssemblyName>ClassLibrary1</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,10 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="Jayrock, Version=0.9.16530.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jayrock.0.9.16530.1\lib\net40\Jayrock.dll</HintPath>
+    </Reference>
+    <Reference Include="Jayrock.Json, Version=0.9.16530.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jayrock-json.0.9.16530.1\lib\net40\Jayrock.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RateGate, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JackLeitch.RateGate.1.0.0\lib\net40\RateGate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,22 +50,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImPoint.cs" />
-    <Compile Include="MNullPoint.cs" />
-    <Compile Include="MPoint.cs" />
-    <Compile Include="MVector.cs" />
-    <Compile Include="OrderedList.cs" />
-    <Compile Include="OrderedListTest.cs" />
+    <Compile Include="Kraken.cs" />
+    <Compile Include="KrakenClient.cs" />
+    <Compile Include="KrakenOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dek572Cls\Dek572.Cls.csproj">
+      <Project>{E2987275-DA5D-4B88-B448-9A2B691EEBA4}</Project>
+      <Name>Dek572.Cls</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.10.1\build\NUnit.props'))" />
-  </Target>
 </Project>

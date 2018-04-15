@@ -9,20 +9,20 @@ namespace Dek572.Cls
     /// <summary>
     /// Specialized class for a list of mPonts
     /// </summary>
-    public class mVector : IEnumerable<MPoint>
+    public class MVector : IEnumerable<IMPoint>
     {
-        private OrderedList<MPoint> m_Points;
+        private OrderedList<IMPoint> m_Points;
         public int Count => m_Points.Count;
         public int LastIdx => m_Points.Count - 1;
-        public MPoint First => m_Points.Any() ? m_Points.First() : MPoint.;
-        public MPoint Last => m_Points.First();
+        public IMPoint First => m_Points.Any() ? m_Points.First() : MPoint.Null;
+        public IMPoint Last => m_Points.First();
 
-        public mVector()
+        public MVector()
         {
-            m_Points = new OrderedList<MPoint>();
+            m_Points = new OrderedList<IMPoint>();
         }
 
-        public mVector(mVector points)
+        public MVector(MVector points)
         {
             m_Points = points.m_Points;
         }
@@ -30,7 +30,7 @@ namespace Dek572.Cls
         /// <summary>
         /// Indexer
         /// </summary>
-        public MPoint this[int idx]
+        public IMPoint this[int idx]
         {
             get => m_Points[idx];
             set => m_Points[idx] = value;
@@ -49,7 +49,7 @@ namespace Dek572.Cls
         /// Merges two vectors in order
         /// </summary>
         /// <param name="points"></param>
-        public void AddRange(mVector points)
+        public void AddRange(MVector points)
         {
             m_Points.AddRange(points);
         }
@@ -242,7 +242,7 @@ namespace Dek572.Cls
         #endregion File stuff --------------------------------------------
 
 
-        public IEnumerator<MPoint> GetEnumerator()
+        public IEnumerator<IMPoint> GetEnumerator()
         {
             return m_Points.GetEnumerator();
         }

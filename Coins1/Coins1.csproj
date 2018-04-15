@@ -43,8 +43,13 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XBT.cs" />
+    <Compile Include="XbtFetcher.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dek572Cls\Dek572.Cls.csproj">
+      <Project>{E2987275-DA5D-4B88-B448-9A2B691EEBA4}</Project>
+      <Name>Dek572.Cls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\mCoin.Interfaces\mCalc.Api.csproj">
       <Project>{f3e72c16-7a13-4e72-9907-02829f336d7e}</Project>
       <Name>mCalc.Api</Name>
